@@ -1,18 +1,16 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+import chatRoute from "./routes/chat.js";
 
-dotenv.config();
+console.log("🚀 Server starting...");
 
 const app = express();
 
-app.use(cors());           // allows frontend requests
-app.use(express.json());   // parses JSON body
+app.use(cors());
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("AI Chat Backend Running");
-});
+app.use("/chat", chatRoute);
 
 app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+  console.log("✅ Server running on http://localhost:5000");
 });
